@@ -106,3 +106,6 @@
     justify-content: center;
     -unity-text-align: upper-center;
 }
+
+.EndGameUI {
+}
