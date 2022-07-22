@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Mime;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,8 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UIElements.Button;
 
-public class ControllerPause : MonoBehaviour
-{
+public class ControllerPause : MonoBehaviour {
     public Button pauseButton;
     public Button restartButton;
     public Button resumeButton;
@@ -19,8 +19,7 @@ public class ControllerPause : MonoBehaviour
 
     public VisualElement backgroundPauseMenu;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         pauseButton = root.Q<Button>("pause");
@@ -35,20 +34,18 @@ public class ControllerPause : MonoBehaviour
         
         pauseButton.clicked += PauseButtonPressed;
         restartButton.clicked += RestartButtonPressed;
+		resumeButton.clicked += ResumeButtonPressed;
         
         backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = false;
         pauseButton.visible = shieldButton.visible = true;
     }
 
-    private void Update()
-    {
+    private void Update() {
         message.text = messageTextPause;
     }
 
-    void ChangeVisiblePauseMenu()
-    {
-        if (backgroundPauseMenu.visible == false)
-        {
+    void ChangeVisiblePauseMenu() {
+        if (backgroundPauseMenu.visible == false) {
             backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = true;
             pauseButton.visible = shieldButton.visible = false;
             
@@ -66,10 +63,13 @@ public class ControllerPause : MonoBehaviour
         Debug.Log("Clicked pause-menu");
     }
 
-    void RestartButtonPressed()
-    {
+    void RestartButtonPressed() {
         ChangeVisiblePauseMenu();
-        Debug.Log("Clicked restarted");
+        Debug.Log("Clicked restart-button");
     }
     
+	void ResumeButtonPressed() {
+		ChangeVisiblePauseMenu();
+		Debug.Log("Clicked resume button");
+	}
 }

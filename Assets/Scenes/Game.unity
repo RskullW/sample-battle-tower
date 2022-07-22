@@ -147,7 +147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31035112}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.100279324, y: 0.15158145, z: 0}
   m_LocalScale: {x: 0.07640565, y: 0.04061909, z: 0.26760432}
   m_ConstrainProportionsScale: 1
@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 1988675342}
   - component: {fileID: 1988675344}
   - component: {fileID: 1988675343}
+  - component: {fileID: 1988675345}
   m_Layer: 0
   m_Name: PlayerCollider
   m_TagString: Untagged
@@ -977,6 +978,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1988675345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988675341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febe96e747f42df5e8a4ae8b837e654a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIDocumentMenu: {fileID: 2028148527}
+  playerCannon: {fileID: 31035112}
+  maxRotation: 25
+  minRotation: 1
+  speedRotation: 1
 --- !u!1 &2028148527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageTextPause: Pause
+  activePause: 0
 --- !u!1 &2028950718
 GameObject:
   m_ObjectHideFlags: 0
