@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a2061046-ea42-4bae-b715-9df1060c23d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +12,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptBullet.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -89,7 +89,10 @@
       <workItem from="1658513533802" duration="3744000" />
       <workItem from="1658517512394" duration="338000" />
       <workItem from="1658518302783" duration="2716000" />
-      <workItem from="1658521804116" duration="145000" />
+      <workItem from="1658521804116" duration="793000" />
+      <workItem from="1658568993865" duration="814000" />
+      <workItem from="1658570132023" duration="5769000" />
+      <workItem from="1658582962060" duration="2899000" />
     </task>
     <servers />
   </component>
@@ -99,7 +102,22 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
