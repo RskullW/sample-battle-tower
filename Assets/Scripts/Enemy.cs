@@ -9,11 +9,13 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    private GameObject UIDocumentPause;
+    private GameObject UIHealth;
     [SerializeField][Range(1f,200f)] private float health = 200f;
-    public GameObject UIHealth;
     public Transform firePoint;
     private VisualElement backgroundHealth;
     private float localHealth;
+    
     
     // SHIELD SETTINGS
     public GameObject shield;
@@ -33,7 +35,6 @@ public class Enemy : MonoBehaviour
     private float localTimerAttack = 5f;
 
     // CHECKING PAUSE ACTIVE
-    public GameObject UIDocumentPause;
     private VisualElement activePause;
 
     void Start()
@@ -41,6 +42,9 @@ public class Enemy : MonoBehaviour
         aliveShield = activeTimerShield = false;
 
         localHealth = health;
+        
+        UIDocumentPause = GameObject.Find("UIDocumentMenu");
+        UIHealth = GameObject.Find("UIHealthBarEnemy");
 
         var root = UIHealth.GetComponent<UIDocument>().rootVisualElement;
         var rootPause = UIDocumentPause.GetComponent<UIDocument>().rootVisualElement;
@@ -86,9 +90,9 @@ public class Enemy : MonoBehaviour
         return health;
     }
 
-    void Death()
+    public void Death(bool restartClicked = false)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     void GiveDamage()
@@ -159,5 +163,15 @@ public class Enemy : MonoBehaviour
     public bool CheckingAliveShield()
     {
         return aliveShield;
+    }
+    
+    public void Respawn()
+    {
+        localHealth = health;
+        localTimerAttack = 5f;
+        activeTimerShield = aliveShield = false;
+        localTimerShield = Random.Range(3f, 15f);
+        backgroundHealth.style.borderLeftWidth = Math.Abs((localHealth * 100) / health - 100);
+
     }
 }

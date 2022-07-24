@@ -24,8 +24,8 @@ public class ControllerPlayer : MonoBehaviour
 
     private Label ActiveLabelTimer;
 
-    public GameObject UIDocumentMenu;
-	public GameObject UIHealthBarUser;
+    private GameObject UIDocumentMenu;
+	private GameObject UIHealthBarUser;
 
     [SerializeField] private GameObject playerCannon;
 
@@ -56,37 +56,7 @@ public class ControllerPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        aliveShield = activeTimerShield = false;
-
-        localColorShieldButton = new StyleColor[6];
-        var resolution = Screen.resolutions;
-        foreach (var res in resolution)
-        {
-            maxPositionTouch = res.height;
-        }
-
-        var root = UIDocumentMenu.GetComponent<UIDocument>().rootVisualElement;
-        var rootHealthBar = UIHealthBarUser.GetComponent<UIDocument>().rootVisualElement;
-        
-        ActivePause = root.Q<VisualElement>("pause-menu");
-		shieldButton = root.Q<Button>("shield");
-        ActiveBackgroundTimer = root.Q<VisualElement>("background-timer");
-        ActiveLabelTimer = root.Q<Label>("timer");
-
-        HealthBarBackground = rootHealthBar.Q<VisualElement>("background-user-health");
-        
-        thisPositionTouch = playerCannon.transform.position.y;
-        localHealth = health;
-		shieldButton.clicked += OnPressedShieldButton;
-        if (directionLeft == true)
-        {
-            firePoint.Rotate(0, 180f, 0);    
-        }
-
-        if (directionRight == true)
-        {
-            firePoint.Rotate(0,0,0);
-        }
+        StartSettings();
     }
 
     // Update is called once per frame
@@ -131,7 +101,6 @@ public class ControllerPlayer : MonoBehaviour
 
             switch (touch.phase) {
                 case TouchPhase.Moved: {
-
                     if (playerCannon.transform.rotation.eulerAngles.z < minRotation) {
                         playerCannon.transform.rotation = Quaternion.Euler(0, 0, minRotation);
                     }
@@ -165,7 +134,7 @@ public class ControllerPlayer : MonoBehaviour
     {
         Instantiate(bullet, firePoint.position, firePoint.rotation);
     }
-
+    
 	void OnPressedShieldButton() {
         if (!aliveShield)
         {
@@ -174,13 +143,6 @@ public class ControllerPlayer : MonoBehaviour
             aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = true;
             localTimerShield = reloadShield;
 
-            localColorShieldButton[0] = shieldButton.style.color;
-            localColorShieldButton[1] = shieldButton.style.borderBottomColor;
-            localColorShieldButton[2] = shieldButton.style.borderLeftColor;
-            localColorShieldButton[3] = shieldButton.style.borderRightColor;
-            localColorShieldButton[4] = shieldButton.style.borderTopColor;
-            localColorShieldButton[5] = shieldButton.style.backgroundColor;
-            
             shieldButton.style.color = Color.white;
             shieldButton.style.borderBottomColor = shieldButton.style.borderLeftColor = shieldButton.style.borderRightColor = shieldButton.style.borderTopColor = Color.gray;
             shieldButton.style.backgroundColor = Color.gray;
@@ -219,8 +181,74 @@ public class ControllerPlayer : MonoBehaviour
         }
     }
 
-    void Death()
+    public void Death(bool restartClicked = false)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void StartSettings()
+    {
+        Debug.Log("Start Controller player");
+        aliveShield = activeTimerShield = false;
+
+        localColorShieldButton = new StyleColor[6];
+        var resolution = Screen.resolutions;
+        foreach (var res in resolution)
+        {
+            maxPositionTouch = res.height;
+        }
+
+        UIDocumentMenu = GameObject.Find("UIDocumentMenu");
+        UIHealthBarUser = GameObject.Find("UIHealthBarUser");
+        
+        var root = UIDocumentMenu.GetComponent<UIDocument>().rootVisualElement;
+        var rootHealthBar = UIHealthBarUser.GetComponent<UIDocument>().rootVisualElement;
+        
+        ActivePause = root.Q<VisualElement>("pause-menu");
+        shieldButton = root.Q<Button>("shield");
+        ActiveBackgroundTimer = root.Q<VisualElement>("background-timer");
+        ActiveLabelTimer = root.Q<Label>("timer");
+
+        HealthBarBackground = rootHealthBar.Q<VisualElement>("background-user-health");
+        
+        thisPositionTouch = playerCannon.transform.position.y;
+        localHealth = health;
+        shieldButton.clicked += OnPressedShieldButton;
+        if (directionLeft == true)
+        {
+            firePoint.Rotate(0, 180f, 0);    
+        }
+
+        if (directionRight == true)
+        {
+            firePoint.Rotate(0,0,0);
+        }
+        
+        localColorShieldButton[0] = shieldButton.style.color;
+        localColorShieldButton[1] = shieldButton.style.borderBottomColor;
+        localColorShieldButton[2] = shieldButton.style.borderLeftColor;
+        localColorShieldButton[3] = shieldButton.style.borderRightColor;
+        localColorShieldButton[4] = shieldButton.style.borderTopColor;
+        localColorShieldButton[5] = shieldButton.style.backgroundColor;
+    }
+
+    public void Respawn()
+    {
+		ActiveLabelTimer.text += Math.Round(localTimerShield);
+        localHealth = health;
+        localTimerReload = 0f;
+        localTimerShield = 0f;
+        playerCannon.transform.rotation = Quaternion.Euler(0f,0f,0f);
+        HealthBarBackground.style.borderRightWidth = Math.Abs((localHealth * 100) / health - 100);
+
+        
+        shieldButton.style.color = localColorShieldButton[0];
+        shieldButton.style.borderBottomColor = localColorShieldButton[1];
+        shieldButton.style.borderLeftColor = localColorShieldButton[2];
+        shieldButton.style.borderRightColor = localColorShieldButton[3];
+        shieldButton.style.borderTopColor = localColorShieldButton[4];
+        shieldButton.style.backgroundColor = localColorShieldButton[5];
+                
+        activeTimerShield = aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = false;
     }
 }

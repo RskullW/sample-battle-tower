@@ -10,13 +10,17 @@ public class PropertiesBullet : MonoBehaviour
     public Rigidbody2D rigidbody;
     
     private VisualElement ActivePause;
+    private VisualElement root;
     public GameObject UIDocumentMenu;
+    
+    private static short numBulletsCreated = 0;
 
     void Start()
     {
+        numBulletsCreated++;
         UIDocumentMenu = GameObject.Find("UIDocumentMenu");
         
-        var root = UIDocumentMenu.GetComponent<UIDocument>().rootVisualElement;
+        root = UIDocumentMenu.GetComponent<UIDocument>().rootVisualElement;
         ActivePause = root.Q<VisualElement>("pause-menu");
 
     }
@@ -26,6 +30,21 @@ public class PropertiesBullet : MonoBehaviour
         if (!ActivePause.visible)
         {
             rigidbody.velocity = transform.right * speed;
+
+            if (UIDocumentMenu.GetComponent<ControllerPause>().GetDeleteBullet())
+            {
+                numBulletsCreated--;
+		    
+                if (numBulletsCreated == 0)
+                {
+                    UIDocumentMenu.GetComponent<ControllerPause>().SetDeleteBullet();
+                }
+		    
+                Destroy(gameObject);
+		    
+                Debug.LogAssertion("[RESTART] Bullet destroyed");
+
+            }
         }
 
         else
@@ -54,7 +73,8 @@ public class PropertiesBullet : MonoBehaviour
         {
             shieldPlayer.TakeDamage(damage);
         }
-        
+
+        numBulletsCreated--;
         Destroy(gameObject);
     }
 
