@@ -32,7 +32,17 @@ public class ShieldScript : MonoBehaviour
 
     void Death()
     {
-	    GameObject.Find("PlayerCollider").GetComponent<ControllerPlayer>().SetAliveShield();
+	    if (GameObject.Find("EnemyCollider").GetComponent<Enemy>().CheckingAliveShield())
+	    {
+		    GameObject.Find("EnemyCollider").GetComponent<Enemy>().SetAliveShield();
+	    }
+	    
+	    else if (GameObject.Find("PlayerCollider").GetComponent<ControllerPlayer>().CheckingAliveShield())
+	    {
+		    GameObject.Find("PlayerCollider").GetComponent<ControllerPlayer>().SetAliveShield();
+	    }
+
+	    Debug.Log("Shield destroyed");
 	    Destroy(gameObject);
     }
 }

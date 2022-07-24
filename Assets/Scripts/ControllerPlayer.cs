@@ -44,6 +44,7 @@ public class ControllerPlayer : MonoBehaviour
     [SerializeField] private bool directionLeft;
     [SerializeField] private bool directionRight;
     [SerializeField][Range(1f,100f)] private float health = 100f;
+    [SerializeField] private float damage = 30f;
     [SerializeField] private float reloadTime = 5f;
     [SerializeField] private float reloadShield = 15f;
     
@@ -86,7 +87,6 @@ public class ControllerPlayer : MonoBehaviour
         {
             firePoint.Rotate(0,0,0);
         }
-
     }
 
     // Update is called once per frame
@@ -195,6 +195,10 @@ public class ControllerPlayer : MonoBehaviour
         }
     }
     
+	public bool CheckingAliveShield() {
+		return aliveShield;
+	}
+
     public void TakeDamage(float damage) {
         localHealth -= damage;
 
