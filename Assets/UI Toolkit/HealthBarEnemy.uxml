@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="background" style="height: 1082px; align-items: center; justify-content: center;">
+        <ui:VisualElement name="background-enemy-health" style="height: 12px; width: 98px; margin-left: auto; margin-right: 40px; margin-top: 20px; margin-bottom: auto; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; background-color: rgba(209, 209, 209, 0.63); border-left-width: 0; border-right-width: 0;">
+            <ui:VisualElement name="health-user" style="height: 56px; background-color: rgb(81, 255, 124); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

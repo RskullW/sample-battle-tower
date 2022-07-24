@@ -37,11 +37,18 @@ public class PropertiesBullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
-
+        ShieldScript shield = hitInfo.GetComponent<ShieldScript>();
+        
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
         }
+
+        if (shield != null)
+        {
+            shield.TakeDamage(damage);
+        }
+        
         Destroy(gameObject);
     }
 }

@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="a2061046-ea42-4bae-b715-9df1060c23d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Enemy.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,8 +17,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptBullet.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -35,6 +41,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;do_not_show_solution_notification&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.C#&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -93,6 +100,13 @@
       <workItem from="1658568993865" duration="814000" />
       <workItem from="1658570132023" duration="5769000" />
       <workItem from="1658582962060" duration="2899000" />
+      <workItem from="1658588548161" duration="860000" />
+      <workItem from="1658591793943" duration="1476000" />
+      <workItem from="1658615887535" duration="3179000" />
+      <workItem from="1658619656349" duration="3004000" />
+      <workItem from="1658664600009" duration="944000" />
+      <workItem from="1658667607526" duration="3969000" />
+      <workItem from="1658678550663" duration="1554000" />
     </task>
     <servers />
   </component>

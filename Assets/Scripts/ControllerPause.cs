@@ -15,9 +15,13 @@ public class ControllerPause : MonoBehaviour {
     public Button resumeButton;
     public Button shieldButton;
     public Label message;
+    public Label timer;
+    
     [SerializeField] private string messageTextPause;
 
     public VisualElement backgroundPauseMenu;
+
+    public VisualElement backgroundTimer;
     // Start is called before the first frame update
     void Start() {
         var root = GetComponent<UIDocument>().rootVisualElement;
@@ -27,33 +31,36 @@ public class ControllerPause : MonoBehaviour {
         restartButton = root.Q<Button>("restart");
         resumeButton = root.Q<Button>("resume");
         message = root.Q<Label>("message");
+        timer = root.Q<Label>("timer");
+        
 
         messageTextPause = "Pause";
         
         backgroundPauseMenu = root.Q<VisualElement>("pause-menu");
+        backgroundTimer = root.Q<VisualElement>("background-timer");
         
         pauseButton.clicked += PauseButtonPressed;
         restartButton.clicked += RestartButtonPressed;
 		resumeButton.clicked += ResumeButtonPressed;
         
-        backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = false;
+        backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = backgroundTimer.visible = timer.visible = false;
         pauseButton.visible = shieldButton.visible = true;
     }
 
-    private void Update() {
+    void Update() {
         message.text = messageTextPause;
     }
 
     void ChangeVisiblePauseMenu() {
         if (backgroundPauseMenu.visible == false) {
             backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = true;
-            pauseButton.visible = shieldButton.visible = false;
+            pauseButton.visible = false;
             
             return;
         }
 
         backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = false;
-        pauseButton.visible = shieldButton.visible = true;
+		pauseButton.visible = true;
     }
     
     void PauseButtonPressed()
