@@ -8,8 +8,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShieldScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShieldScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/EndGame.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/EndGame.uxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +116,8 @@
       <workItem from="1658692184252" duration="3391000" />
       <workItem from="1658695807330" duration="2169000" />
       <workItem from="1658698440903" duration="3468000" />
-      <workItem from="1658702008756" duration="178000" />
+      <workItem from="1658702008756" duration="1343000" />
+      <workItem from="1658703590553" duration="3004000" />
     </task>
     <servers />
   </component>
@@ -140,25 +140,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs</url>
-          <line>163</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" initialLine="163" containingFunctionPresentation="method 'TakeDamage'">
-            <startOffsets>
-              <option value="5772" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5773" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

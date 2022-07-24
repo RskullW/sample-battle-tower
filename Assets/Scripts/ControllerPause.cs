@@ -18,6 +18,8 @@ public class ControllerPause : MonoBehaviour
     public Button restartButton;
     public Button resumeButton;
     public Button shieldButton;
+    public Button restartButtonEnd;
+    public Label endMessage;
     public Label message;
     public Label timer;
 
@@ -26,20 +28,26 @@ public class ControllerPause : MonoBehaviour
     public VisualElement backgroundPauseMenu;
 
     public VisualElement backgroundTimer;
+    public VisualElement backgroundEnd;
 
     private bool DeleteShield = false;
 
     private bool DeleteBullet = false;
+
+    private bool endGame = false;
     // Start is called before the first frame update
     void Start() {
         
         var root = gameObject.GetComponent<UIDocument>().rootVisualElement;
+        var rootEnd = GameObject.Find("UIDocumentEndGame").GetComponent<UIDocument>().rootVisualElement;
 
         pauseButton = root.Q<Button>("pause");
         shieldButton = root.Q<Button>("shield");
         restartButton = root.Q<Button>("restart");
+        restartButtonEnd = rootEnd.Q<Button>("restartEnd");
         resumeButton = root.Q<Button>("resume");
         message = root.Q<Label>("message");
+        endMessage = rootEnd.Q<Label>("message");
         timer = root.Q<Label>("timer");
         
 
@@ -47,10 +55,13 @@ public class ControllerPause : MonoBehaviour
         
         backgroundPauseMenu = root.Q<VisualElement>("pause-menu");
         backgroundTimer = root.Q<VisualElement>("background-timer");
+        backgroundEnd = rootEnd.Q<VisualElement>("backgroundEndGame");
         
         pauseButton.clicked += PauseButtonPressed;
         restartButton.clicked += RestartButtonPressed;
-		resumeButton.clicked += ResumeButtonPressed;
+        restartButtonEnd.clicked += RestartButtonPressed;
+        resumeButton.clicked += ResumeButtonPressed;
+
         
         backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = backgroundTimer.visible = timer.visible = false;
         pauseButton.visible = shieldButton.visible = true;
@@ -58,10 +69,12 @@ public class ControllerPause : MonoBehaviour
 
     void Update() {
         message.text = messageTextPause;
+        EndGameMessage();
     }
 
     void ChangeVisiblePauseMenu()
     {
+
         if (backgroundPauseMenu.visible == false) {
             backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = true;
             pauseButton.visible = false;
@@ -87,15 +100,16 @@ public class ControllerPause : MonoBehaviour
 
         playerObject.SetActive(true);
         enemyObject.SetActive(true);
-        DeleteShield = DeleteBullet = true;
+        shieldButton.visible = DeleteShield = DeleteBullet = true;
 
         Debug.Log("Clicked restart-button");
 
+        endGame = backgroundEnd.visible = endMessage.visible = false;
         ChangeVisiblePauseMenu();
 
     }
-    
-	void ResumeButtonPressed() {
+
+    void ResumeButtonPressed() {
 		ChangeVisiblePauseMenu();
 		Debug.Log("Clicked resume button");
 	}
@@ -118,5 +132,31 @@ public class ControllerPause : MonoBehaviour
     public void SetDeleteBullet()
     {
         DeleteBullet = false;
+    }
+
+    void EndGameMessage()
+    {
+        if (!endGame)
+        {
+            if (playerObject.GetComponent<ControllerPlayer>().GetLocalHealth() <= 0f)
+            {
+                pauseButton.visible = shieldButton.visible = false;
+                endGame = backgroundEnd.visible = endMessage.visible = restartButton.visible = true;
+                endMessage.text = "DEFEAT";
+                endMessage.style.color = Color.red;
+                
+                Debug.LogAssertion("[END GAME] Defeat");
+            }
+
+            if (enemyObject.GetComponent<Enemy>().GetLocalHealth() <= 0f)
+            {
+                pauseButton.visible = shieldButton.visible = false;
+                endGame = backgroundEnd.visible = endMessage.visible = restartButton.visible = true;
+                endMessage.text = "VICTORY";
+                endMessage.style.color = Color.green;
+                
+                Debug.LogAssertion("[END GAME] Victory");
+            }
+        }
     }
 }

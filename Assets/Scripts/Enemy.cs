@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
 
     // CHECKING PAUSE ACTIVE
     private VisualElement activePause;
+    private VisualElement ActiveEnd;
 
     void Start()
     {
@@ -51,14 +52,15 @@ public class Enemy : MonoBehaviour
         
         backgroundHealth = root.Q<VisualElement>("background-enemy-health");
         activePause = rootPause.Q<VisualElement>("pause-menu");
-        
+        ActiveEnd = GameObject.Find("UIDocumentEndGame").GetComponent<UIDocument>().rootVisualElement
+            .Q<VisualElement>("backgroundEndGame");
         firePoint.Rotate(0, 180f, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!activePause.visible) {
+        if (!activePause.visible && !ActiveEnd.visible) {
             MoveCannon();
             GiveDamage();
             ShieldTimer();
@@ -88,6 +90,11 @@ public class Enemy : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+    
+    public float GetLocalHealth()
+    {
+        return localHealth;
     }
 
     public void Death(bool restartClicked = false)

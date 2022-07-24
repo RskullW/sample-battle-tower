@@ -720,7 +720,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 11e4e3448e67f9e70964c285cb5bc289, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 4e8c65c2a92e61cd2a34c664f472cb7c, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!4 &1810811339
 Transform:
   m_ObjectHideFlags: 0
@@ -784,6 +784,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763916575}
     m_Modifications:
+    - target: {fileID: 8205144743909497635, guid: cb7f6df07eb39be07b89a4bbd4552e6e, type: 3}
+      propertyPath: health
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8205144743909497635, guid: cb7f6df07eb39be07b89a4bbd4552e6e, type: 3}
       propertyPath: UIHealth
       value: 
@@ -865,6 +869,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 763916575}
     m_Modifications:
+    - target: {fileID: 8394570658380395306, guid: 84ae64c83aba0b93195e519e9a6099bd, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8394570658380395306, guid: 84ae64c83aba0b93195e519e9a6099bd, type: 3}
       propertyPath: UIDocumentMenu
       value: 

@@ -10,6 +10,7 @@ public class PropertiesBullet : MonoBehaviour
     public Rigidbody2D rigidbody;
     
     private VisualElement ActivePause;
+    private VisualElement ActiveEnd;
     private VisualElement root;
     public GameObject UIDocumentMenu;
     
@@ -22,12 +23,13 @@ public class PropertiesBullet : MonoBehaviour
         
         root = UIDocumentMenu.GetComponent<UIDocument>().rootVisualElement;
         ActivePause = root.Q<VisualElement>("pause-menu");
-
+        ActiveEnd = GameObject.Find("UIDocumentEndGame").GetComponent<UIDocument>().rootVisualElement
+            .Q<VisualElement>("backgroundEndGame");
     }
 
     void Update()
     {
-        if (!ActivePause.visible)
+        if (!ActivePause.visible && !ActiveEnd.visible)
         {
             rigidbody.velocity = transform.right * speed;
 

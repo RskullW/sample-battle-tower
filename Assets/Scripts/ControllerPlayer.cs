@@ -19,6 +19,7 @@ public class ControllerPlayer : MonoBehaviour
     private float thisPositionTouch;
     
     private VisualElement ActivePause;
+    private VisualElement ActiveEnd;
     private VisualElement ActiveBackgroundTimer;
 	private VisualElement HealthBarBackground;
 
@@ -62,12 +63,12 @@ public class ControllerPlayer : MonoBehaviour
     // Update is called once per frame
     void Update() {
         
-        if (localTimerReload >= 0.0f && !ActivePause.visible)
+        if (localTimerReload >= 0.0f && !ActivePause.visible && !ActiveEnd.visible)
         {
             localTimerReload -= Time.deltaTime;
         }
 
-        if (activeTimerShield && !ActivePause.visible) {
+        if (activeTimerShield && !ActivePause.visible && !ActiveEnd.visible) {
 
             if (localTimerShield >= 0.0f)
             {
@@ -96,7 +97,7 @@ public class ControllerPlayer : MonoBehaviour
             }
         }
 
-        if (Input.touchCount > 0 && !ActivePause.visible) {
+        if (Input.touchCount > 0 && !ActivePause.visible  && !ActiveEnd.visible) {
             Touch touch = Input.GetTouch(0);
 
             switch (touch.phase) {
@@ -184,6 +185,7 @@ public class ControllerPlayer : MonoBehaviour
     public void Death(bool restartClicked = false)
     {
         gameObject.SetActive(false);
+
     }
 
     public void StartSettings()
@@ -210,6 +212,8 @@ public class ControllerPlayer : MonoBehaviour
         ActiveLabelTimer = root.Q<Label>("timer");
 
         HealthBarBackground = rootHealthBar.Q<VisualElement>("background-user-health");
+        ActiveEnd = GameObject.Find("UIDocumentEndGame").GetComponent<UIDocument>().rootVisualElement
+            .Q<VisualElement>("backgroundEndGame");
         
         thisPositionTouch = playerCannon.transform.position.y;
         localHealth = health;
@@ -234,7 +238,7 @@ public class ControllerPlayer : MonoBehaviour
 
     public void Respawn()
     {
-		ActiveLabelTimer.text += Math.Round(localTimerShield);
+		ActiveLabelTimer.text = "00:00";
         localHealth = health;
         localTimerReload = 0f;
         localTimerShield = 0f;
@@ -250,5 +254,15 @@ public class ControllerPlayer : MonoBehaviour
         shieldButton.style.backgroundColor = localColorShieldButton[5];
                 
         activeTimerShield = aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = false;
+    }
+
+    public float GetHealth()
+    {
+        return health;
+    }
+    
+    public float GetLocalHealth()
+    {
+        return localHealth;
     }
 }
