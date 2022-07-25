@@ -14,6 +14,8 @@ public class ControllerPause : MonoBehaviour
 {
     public GameObject playerObject;
     public GameObject enemyObject;
+    public GameObject objectHealthPlayer;
+    public GameObject objectHealthEnemy;
     public Button pauseButton;
     public Button restartButton;
     public Button resumeButton;
@@ -35,6 +37,12 @@ public class ControllerPause : MonoBehaviour
     private bool DeleteBullet = false;
 
     private bool endGame = false;
+    
+    // SOUND DESIGN
+
+    public AudioSource soundDefeat;
+
+    public AudioSource soundVictory;
     // Start is called before the first frame update
     void Start() {
         
@@ -59,7 +67,6 @@ public class ControllerPause : MonoBehaviour
         
         pauseButton.clicked += PauseButtonPressed;
         restartButton.clicked += RestartButtonPressed;
-        restartButtonEnd.clicked += RestartButtonPressed;
         resumeButton.clicked += ResumeButtonPressed;
 
         
@@ -76,14 +83,33 @@ public class ControllerPause : MonoBehaviour
     {
 
         if (backgroundPauseMenu.visible == false) {
-            backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = true;
-            pauseButton.visible = false;
             
+            backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = true;
+            shieldButton.visible = pauseButton.visible = false;
+            gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("background-timer").visible = false;
+            gameObject.GetComponent<UIDocument>().rootVisualElement.Q<Label>("timer").visible = false;
+
+            if (!backgroundPauseMenu.enabledSelf)
+            {
+                backgroundPauseMenu.SetEnabled(true);
+            }
+
             return;
         }
 
-        backgroundPauseMenu.visible = resumeButton.visible = restartButton.visible = message.visible = false;
-		pauseButton.visible = true;
+        if (backgroundPauseMenu.enabledSelf)
+        {
+            backgroundPauseMenu.SetEnabled(false);
+        }
+
+        backgroundPauseMenu.visible = backgroundEnd.visible = resumeButton.visible = restartButton.visible = message.visible = false;
+		shieldButton.visible = pauseButton.visible = true;
+
+        if (playerObject.GetComponent<ControllerPlayer>().GetActiveShield())
+        {
+            gameObject.GetComponent<UIDocument>().rootVisualElement.Q<Label>("timer").visible = true;
+            gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("background-timer").visible = true;
+        }
     }
     
     void PauseButtonPressed()
@@ -97,19 +123,11 @@ public class ControllerPause : MonoBehaviour
     {
         playerObject.GetComponent<ControllerPlayer>().Respawn();
         enemyObject.GetComponent<Enemy>().Respawn();
-
-        playerObject.SetActive(true);
-        enemyObject.SetActive(true);
-        shieldButton.visible = DeleteShield = DeleteBullet = true;
-
-        Debug.Log("Clicked restart-button");
-
-        endGame = backgroundEnd.visible = endMessage.visible = false;
-        ChangeVisiblePauseMenu();
-
+        shieldButton.visible = DeleteShield = DeleteBullet = pauseButton.visible = true;
+        endGame = backgroundEnd.visible = endMessage.visible = restartButton.visible = false;
     }
 
-    void ResumeButtonPressed() {
+    public void ResumeButtonPressed() {
 		ChangeVisiblePauseMenu();
 		Debug.Log("Clicked resume button");
 	}
@@ -133,30 +151,35 @@ public class ControllerPause : MonoBehaviour
     {
         DeleteBullet = false;
     }
-
+    
     void EndGameMessage()
     {
         if (!endGame)
         {
             if (playerObject.GetComponent<ControllerPlayer>().GetLocalHealth() <= 0f)
             {
+                soundDefeat.Play();
                 pauseButton.visible = shieldButton.visible = false;
                 endGame = backgroundEnd.visible = endMessage.visible = restartButton.visible = true;
                 endMessage.text = "DEFEAT";
                 endMessage.style.color = Color.red;
-                
+                gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("background-timer").visible = false;
+                gameObject.GetComponent<UIDocument>().rootVisualElement.Q<Label>("timer").visible = false;
                 Debug.LogAssertion("[END GAME] Defeat");
             }
 
             if (enemyObject.GetComponent<Enemy>().GetLocalHealth() <= 0f)
             {
+                soundVictory.Play();
                 pauseButton.visible = shieldButton.visible = false;
                 endGame = backgroundEnd.visible = endMessage.visible = restartButton.visible = true;
                 endMessage.text = "VICTORY";
                 endMessage.style.color = Color.green;
-                
+                gameObject.GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("background-timer").visible = false;
+                gameObject.GetComponent<UIDocument>().rootVisualElement.Q<Label>("timer").visible = false;
                 Debug.LogAssertion("[END GAME] Victory");
             }
         }
     }
+
 }

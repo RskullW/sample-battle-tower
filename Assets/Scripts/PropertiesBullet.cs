@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class PropertiesBullet : MonoBehaviour
     private VisualElement ActivePause;
     private VisualElement ActiveEnd;
     private VisualElement root;
-    public GameObject UIDocumentMenu;
+    private GameObject UIDocumentMenu;
     
     private static short numBulletsCreated = 0;
 
@@ -33,7 +34,7 @@ public class PropertiesBullet : MonoBehaviour
         {
             rigidbody.velocity = transform.right * speed;
 
-            if (UIDocumentMenu.GetComponent<ControllerPause>().GetDeleteBullet())
+             if (UIDocumentMenu.GetComponent<ControllerPause>().GetDeleteBullet())
             {
                 numBulletsCreated--;
 		    

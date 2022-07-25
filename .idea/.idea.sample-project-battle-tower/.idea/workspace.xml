@@ -3,12 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="a2061046-ea42-4bae-b715-9df1060c23d2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sample-project-battle-tower/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Font/Style.uss" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Font/Style.uss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Border.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Border.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Bullet.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenuScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShieldScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShieldScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/EndGame.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/EndGame.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/MainMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/MainMenu.uxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI Toolkit/PauseMenu.uxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +25,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPause.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ControllerPlayer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PropertiesBullet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptBullet.cs" root0="SKIP_HIGHLIGHTING" />
@@ -118,6 +125,18 @@
       <workItem from="1658698440903" duration="3468000" />
       <workItem from="1658702008756" duration="1343000" />
       <workItem from="1658703590553" duration="3004000" />
+      <workItem from="1658734140881" duration="616000" />
+      <workItem from="1658761351892" duration="1920000" />
+      <workItem from="1658765377082" duration="4795000" />
+      <workItem from="1658771404636" duration="3872000" />
+      <workItem from="1658775701934" duration="145000" />
+      <workItem from="1658776098709" duration="110000" />
+      <workItem from="1658776598609" duration="265000" />
+      <workItem from="1658777309090" duration="265000" />
+      <workItem from="1658778042270" duration="403000" />
+      <workItem from="1658779012720" duration="1597000" />
+      <workItem from="1658781965136" duration="593000" />
+      <workItem from="1658783401924" duration="1844000" />
     </task>
     <servers />
   </component>

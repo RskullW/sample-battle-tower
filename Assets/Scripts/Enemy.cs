@@ -31,12 +31,16 @@ public class Enemy : MonoBehaviour
     private float localTimerMove = 3f;
     // ATTACKING SETTINGS
     public GameObject bullet;
-    private float timeReloadAttack = 5f;
     private float localTimerAttack = 5f;
 
     // CHECKING PAUSE ACTIVE
     private VisualElement activePause;
     private VisualElement ActiveEnd;
+    
+    // SOUND DESIGN
+    public AudioSource soundShot;
+    public AudioSource soundHit;
+    public AudioSource soundDeath;
 
     void Start()
     {
@@ -67,8 +71,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage) {
-        
+    public void TakeDamage(float damage)
+    {
         localHealth -= damage;
 
         if (Math.Abs((localHealth * 100) / health - 100) > health)
@@ -83,7 +87,13 @@ public class Enemy : MonoBehaviour
         
         if (localHealth <= 0)
         {
+            backgroundHealth.style.borderLeftWidth = 100f;
             Death();
+        }
+
+        else
+        {
+            soundHit.Play();
         }
     }
     
@@ -99,20 +109,25 @@ public class Enemy : MonoBehaviour
 
     public void Death(bool restartClicked = false)
     {
+        soundDeath.Play();
         gameObject.SetActive(false);
     }
 
     void GiveDamage()
     {
-        if (localTimerAttack <= 0f)
-        {
-            Instantiate(bullet, firePoint.position, firePoint.rotation);
-            localTimerAttack = Random.Range(3f, 7f);
-        }
+        if (!aliveShield)
+        {	
+            if (localTimerAttack <= 0f)
+            {
+                soundShot.Play();
+                Instantiate(bullet, firePoint.position, firePoint.rotation);
+                localTimerAttack = Random.Range(2f, 5f);
+            }
 
-        else
-        {
-            localTimerAttack -= Time.deltaTime;
+            else
+            {
+                localTimerAttack -= Time.deltaTime;
+            }
         }
     }
 
@@ -174,6 +189,8 @@ public class Enemy : MonoBehaviour
     
     public void Respawn()
     {
+        gameObject.SetActive(true);
+
         localHealth = health;
         localTimerAttack = 5f;
         activeTimerShield = aliveShield = false;

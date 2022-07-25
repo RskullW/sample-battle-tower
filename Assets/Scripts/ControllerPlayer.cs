@@ -11,11 +11,11 @@ using Button = UnityEngine.UIElements.Button;
 
 public class ControllerPlayer : MonoBehaviour
 {
-
+    public Sprite startImageShield;
+    public Sprite usedImageShield;
     private bool aliveShield, activeTimerShield;
     
     private float maxPositionTouch;
-    private float minPositionTouch = 10.0f;
     private float thisPositionTouch;
     
     private VisualElement ActivePause;
@@ -45,7 +45,6 @@ public class ControllerPlayer : MonoBehaviour
     [SerializeField] private bool directionLeft;
     [SerializeField] private bool directionRight;
     [SerializeField][Range(1f,100f)] private float health = 100f;
-    [SerializeField] private float damage = 30f;
     [SerializeField] private float reloadTime = 5f;
     [SerializeField] private float reloadShield = 15f;
     
@@ -53,7 +52,14 @@ public class ControllerPlayer : MonoBehaviour
 
     private float localTimerShield = 0f;
     private float localHealth;
-    private string timerString = "0:00";
+    
+    // SOUND DESIGN
+    public AudioSource soundShot;
+
+    public AudioSource soundHit;
+    public AudioSource soundDeath;
+
+    public AudioSource soundReloadShield;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,13 +92,8 @@ public class ControllerPlayer : MonoBehaviour
 
             else
             {
-                shieldButton.style.color = localColorShieldButton[0];
-                shieldButton.style.borderBottomColor = localColorShieldButton[1];
-                shieldButton.style.borderLeftColor = localColorShieldButton[2];
-                shieldButton.style.borderRightColor = localColorShieldButton[3];
-                shieldButton.style.borderTopColor = localColorShieldButton[4];
-                shieldButton.style.backgroundColor = localColorShieldButton[5];
-                
+                shieldButton.style.backgroundImage = new StyleBackground(startImageShield);
+                soundReloadShield.Play();
                 activeTimerShield = aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = false;
             }
         }
@@ -133,20 +134,19 @@ public class ControllerPlayer : MonoBehaviour
     
     void Shoot()
     {
+        soundShot.Play();
         Instantiate(bullet, firePoint.position, firePoint.rotation);
     }
     
 	void OnPressedShieldButton() {
         if (!aliveShield)
-        {
+        {   
             Instantiate(shield, shieldPoint.position, shieldPoint.rotation);
             
             aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = true;
             localTimerShield = reloadShield;
 
-            shieldButton.style.color = Color.white;
-            shieldButton.style.borderBottomColor = shieldButton.style.borderLeftColor = shieldButton.style.borderRightColor = shieldButton.style.borderTopColor = Color.gray;
-            shieldButton.style.backgroundColor = Color.gray;
+            shieldButton.style.backgroundImage = new StyleBackground(usedImageShield);
         }
     }
 
@@ -178,14 +178,19 @@ public class ControllerPlayer : MonoBehaviour
         
         if (localHealth <= 0)
         {
+            HealthBarBackground.style.borderRightWidth = 100f;
             Death();
+        }
+        else
+        {
+            soundHit.Play();
         }
     }
 
     public void Death(bool restartClicked = false)
     {
+        soundDeath.Play();
         gameObject.SetActive(false);
-
     }
 
     public void StartSettings()
@@ -227,17 +232,15 @@ public class ControllerPlayer : MonoBehaviour
         {
             firePoint.Rotate(0,0,0);
         }
-        
-        localColorShieldButton[0] = shieldButton.style.color;
-        localColorShieldButton[1] = shieldButton.style.borderBottomColor;
-        localColorShieldButton[2] = shieldButton.style.borderLeftColor;
-        localColorShieldButton[3] = shieldButton.style.borderRightColor;
-        localColorShieldButton[4] = shieldButton.style.borderTopColor;
-        localColorShieldButton[5] = shieldButton.style.backgroundColor;
     }
 
     public void Respawn()
     {
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        } 
+        
 		ActiveLabelTimer.text = "00:00";
         localHealth = health;
         localTimerReload = 0f;
@@ -245,14 +248,8 @@ public class ControllerPlayer : MonoBehaviour
         playerCannon.transform.rotation = Quaternion.Euler(0f,0f,0f);
         HealthBarBackground.style.borderRightWidth = Math.Abs((localHealth * 100) / health - 100);
 
-        
-        shieldButton.style.color = localColorShieldButton[0];
-        shieldButton.style.borderBottomColor = localColorShieldButton[1];
-        shieldButton.style.borderLeftColor = localColorShieldButton[2];
-        shieldButton.style.borderRightColor = localColorShieldButton[3];
-        shieldButton.style.borderTopColor = localColorShieldButton[4];
-        shieldButton.style.backgroundColor = localColorShieldButton[5];
-                
+        shieldButton.style.backgroundImage = new StyleBackground(startImageShield);
+
         activeTimerShield = aliveShield = ActiveBackgroundTimer.visible  = ActiveLabelTimer.visible = false;
     }
 
@@ -264,5 +261,10 @@ public class ControllerPlayer : MonoBehaviour
     public float GetLocalHealth()
     {
         return localHealth;
+    }
+
+    public bool GetActiveShield()
+    {
+        return ((localTimerShield <= 0f) ? false : true);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,9 @@ public class ShieldScript : MonoBehaviour
 
     private static short numShieldCreated = 0;
     
+    // Timer death
+    private float timer = 30f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,12 @@ public class ShieldScript : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
+	    timer -= Time.deltaTime;
+	    if (timer <= 0f)
+	    {
+		    Death();
+	    }
+	    
 	    if (UIDocument.GetComponent<ControllerPause>().GetDeleteShield())
 	    {
 		    numShieldCreated--;
